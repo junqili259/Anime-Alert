@@ -3,14 +3,22 @@ from fastapi import FastAPI
 import requests
 import json
 import pandas
+import uvicorn
 
 app = FastAPI()
 
 @app.get("/")
-def home():
+def home(page: Optional[int] = 1):
 
-    query= """query($season: MediaSeason, $seasonYear: Int) {
-        Page {
+    query= """query($season: MediaSeason, $seasonYear: Int, $page: Int) {
+        Page(page: $page) {
+            pageInfo {
+                total
+                perPage
+                currentPage
+                lastPage
+                hasNextPage
+            }
             media(season: $season, seasonYear: $seasonYear, type: ANIME){
                 id
                 title {
@@ -33,7 +41,8 @@ def home():
 
     variables = {
         "season": "FALL",
-        "seasonYear": 2020
+        "seasonYear": 2020,
+        "page": page
     }
 
     url = "https://graphql.anilist.co"
@@ -41,10 +50,11 @@ def home():
 
     # For displaying data through pandas for dev
     #########
-    json_data = json.loads(response.text)
-    seasonal_anime = json_data["data"]["Page"]["media"]
-    df = pandas.DataFrame(seasonal_anime)
-    print(df)
+    #json_data = json.loads(response.text)
+    #seasonal_anime = json_data["data"]["Page"]["media"]
+    #df = pandas.DataFrame(seasonal_anime)
+    #print(df)
     ########
     
-    return seasonal_anime
+    #return seasonal_anime
+    return response.json()
