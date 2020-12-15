@@ -1,5 +1,5 @@
 from typing import Optional
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 import requests
 import uvicorn
 
@@ -10,6 +10,8 @@ import pandas
 
 app = FastAPI()
 
+url = "https://graphql.anilist.co"
+seasons = ['WINTER', 'SPRING', 'SUMMER', 'FALL']
 
 @app.get("/")
 def current_Season(page: Optional[int] = 1):
@@ -49,8 +51,8 @@ def current_Season(page: Optional[int] = 1):
         "page": page
     }
 
-    url = "https://graphql.anilist.co"
-    response = requests.post(url= url, json= {"query": query, "variables": variables})
+
+    response = requests.post(url, json= {"query": query, "variables": variables})
 
     # For displaying data through pandas for dev
     #########
@@ -64,8 +66,41 @@ def current_Season(page: Optional[int] = 1):
     return response.json()
 
 
-"""
+
 @app.get("/season")
 def any_Season(season: str, seasonYear: int, page: Optional[int] = 1):
-    return
-"""
+
+    if season not in seasons:
+        raise HTTPException(status_code= 400, detail= "Season syntax error. Example seasons: WINTER, SPRING, SUMMER, FALL")
+
+    query= """query($season: MediaSeason, $seasonYear: Int, $page: Int) {
+        Page(page: $page) {
+            pageInfo {
+                total
+                perPage
+                currentPage
+                lastPage
+                hasNextPage
+            }
+            media(season: $season, seasonYear: $seasonYear, type: ANIME){
+                id
+                title {
+                    romaji
+                    english
+                }
+                coverImage {
+                    medium
+                }
+                episodes
+            }
+        }
+    }"""
+
+    variables = {
+        "season": season,
+        "seasonYear": seasonYear,
+        "page": page
+    }
+
+    response = requests.post(url, json= {"query": query, "variables": variables})
+    return response.json()
