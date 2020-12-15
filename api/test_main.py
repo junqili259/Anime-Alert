@@ -9,7 +9,6 @@ def test_current_Season():
 
 
 def test_any_Season():
-    
     response = client.get("/season?season=SUMMER&seasonYear=2020")
     assert response.status_code == 200
     
