@@ -1,14 +1,18 @@
 from typing import Optional
 from fastapi import FastAPI
 import requests
+import uvicorn
+
+# Dev 
 import json
 import pandas
-import uvicorn
+
 
 app = FastAPI()
 
+
 @app.get("/")
-def home(page: Optional[int] = 1):
+def current_Season(page: Optional[int] = 1):
 
     query= """query($season: MediaSeason, $seasonYear: Int, $page: Int) {
         Page(page: $page) {
@@ -58,3 +62,10 @@ def home(page: Optional[int] = 1):
     
     #return seasonal_anime
     return response.json()
+
+
+"""
+@app.get("/season")
+def any_Season(season: str, seasonYear: int, page: Optional[int] = 1):
+    return
+"""
