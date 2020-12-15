@@ -2,7 +2,7 @@ from typing import Optional
 from fastapi import FastAPI, HTTPException
 import requests
 
-# Dev 
+# Dev
 import json
 import pandas
 
@@ -15,7 +15,7 @@ seasons = ['WINTER', 'SPRING', 'SUMMER', 'FALL']
 @app.get("/")
 def current_Season(page: Optional[int] = 1):
 
-    query= """query($season: MediaSeason, $seasonYear: Int, $page: Int) {
+    query = """query($season: MediaSeason, $seasonYear: Int, $page: Int) {
         Page(page: $page) {
             pageInfo {
                 total
@@ -72,7 +72,7 @@ def any_Season(season: str, seasonYear: int, page: Optional[int] = 1):
     if season not in seasons:
         raise HTTPException(status_code= 400, detail= "Season syntax error. Example seasons: WINTER, SPRING, SUMMER, FALL")
 
-    query= """query($season: MediaSeason, $seasonYear: Int, $page: Int) {
+    query = """query($season: MediaSeason, $seasonYear: Int, $page: Int) {
         Page(page: $page) {
             pageInfo {
                 total
