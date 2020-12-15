@@ -1,7 +1,6 @@
 from typing import Optional
 from fastapi import FastAPI, HTTPException
 import requests
-import uvicorn
 
 # Dev 
 import json
@@ -56,13 +55,13 @@ def current_Season(page: Optional[int] = 1):
 
     # For displaying data through pandas for dev
     #########
-    #json_data = json.loads(response.text)
-    #seasonal_anime = json_data["data"]["Page"]["media"]
-    #df = pandas.DataFrame(seasonal_anime)
-    #print(df)
+    # json_data = json.loads(response.text)
+    # seasonal_anime = json_data["data"]["Page"]["media"]
+    # df = pandas.DataFrame(seasonal_anime)
+    # print(df)
     ########
     
-    #return seasonal_anime
+    # return seasonal_anime
     return response.json()
 
 
