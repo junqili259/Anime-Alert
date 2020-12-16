@@ -1,5 +1,7 @@
 from typing import Optional
 from fastapi import FastAPI, HTTPException
+from datetime import datetime
+from seasons import months, month_to_season
 import requests
 
 # Dev
@@ -10,10 +12,21 @@ import pandas
 app = FastAPI()
 
 url = "https://graphql.anilist.co"
-seasons = ['WINTER', 'SPRING', 'SUMMER', 'FALL']
+
 
 @app.get("/")
-def current_Season(page: Optional[int] = 1):
+def currentSeason(page: Optional[int] = 1):
+
+    # Automatically get the current season by month (WINTER, SPRING, SUMMER, FALL)
+    current_month = int(datetime.today().strftime("%m"))
+    month = months[current_month]
+    season_now = month_to_season[month]
+
+    year = int(datetime.today().strftime("%Y"))
+
+    # Prevents displaying previous Winter seasonal shows due to year difference
+    if month == "Dec":
+        year = year + 1
 
     query = """query($season: MediaSeason, $seasonYear: Int, $page: Int) {
         Page(page: $page) {
@@ -45,8 +58,8 @@ def current_Season(page: Optional[int] = 1):
     }"""
 
     variables = {
-        "season": "FALL",
-        "seasonYear": 2020,
+        "season": season_now,
+        "seasonYear": year,
         "page": page
     }
 
@@ -67,7 +80,9 @@ def current_Season(page: Optional[int] = 1):
 
 
 @app.get("/season")
-def any_Season(season: str, seasonYear: int, page: Optional[int] = 1):
+def anySeason(season: str, seasonYear: int, page: Optional[int] = 1):
+
+    seasons = ['WINTER', 'SPRING', 'SUMMER', 'FALL']
 
     if season not in seasons:
         raise HTTPException(status_code= 400, detail= "Season syntax error. Example seasons: WINTER, SPRING, SUMMER, FALL")
