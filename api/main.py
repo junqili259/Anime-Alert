@@ -63,8 +63,11 @@ def currentSeason(page: Optional[int] = 1):
         "page": page
     }
 
+    try:
+        response = requests.post(url, json= {"query": query, "variables": variables})
+    except requests.exceptions.ConnectionError as error:
+        print("A Connection Error occured", error)
 
-    response = requests.post(url, json= {"query": query, "variables": variables})
 
     # For displaying data through pandas for dev
     #########
@@ -116,5 +119,9 @@ def anySeason(season: str, seasonYear: int, page: Optional[int] = 1):
         "page": page
     }
 
-    response = requests.post(url, json= {"query": query, "variables": variables})
+    try:
+        response = requests.post(url, json= {"query": query, "variables": variables})
+    except requests.exceptions.ConnectionError as error:
+        print("A Connection Error occured", error)
+
     return response.json()
