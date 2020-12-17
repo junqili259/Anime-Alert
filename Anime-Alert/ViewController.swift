@@ -9,12 +9,25 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var model = Network()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        model.delegate = self
+        model.getAnime()
     }
 
 
 }
 
+
+extension ViewController: AnimeModelProtocol {
+    func animeRetrieved(_ anime: AnimePage) {
+        print(anime)
+    }
+    
+    
+}
