@@ -17,7 +17,7 @@ class Network {
     
     var delegate: AnimeModelProtocol?
 
-    func getAnime() {
+    func getSeasonalAnime() {
         
         // Temporarily using api on local server
         let urlString = "http://localhost:8000"
@@ -48,9 +48,10 @@ class Network {
                     }
                     
                 } catch  {
-                    print("error parsing json")
+                    print("Error parsing json")
                 }
             }
+            print("Error: Couldn't connect to session")
         }
         datatask.resume()
     }

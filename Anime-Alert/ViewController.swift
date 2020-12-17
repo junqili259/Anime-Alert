@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         model.delegate = self
-        model.getAnime()
+        model.getSeasonalAnime()
     }
 
 
