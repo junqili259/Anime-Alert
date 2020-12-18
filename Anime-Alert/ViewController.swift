@@ -8,9 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var animeTableView: UITableView!
     var model = Network()
+    var animes = [Animes]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,16 +20,39 @@ class ViewController: UIViewController {
         
         model.delegate = self
         model.getSeasonalAnime()
+        
+        animeTableView.delegate = self
+        animeTableView.dataSource = self
+        
+
     }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return animes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = animeTableView.dequeueReusableCell(withIdentifier: "AnimeCell", for: indexPath) as! AnimeCell
+        
+        let anime = animes[indexPath.row]
+        
+        cell.displayAnime(anime: anime)
+        
+        return cell
+        
+    }
 
 }
 
 
 extension ViewController: AnimeModelProtocol {
     func animeRetrieved(_ anime: AnimePage) {
-        print(anime)
+        
+        self.animes = anime.Page!.media!
+        
+        animeTableView.reloadData()
+        
     }
-    
-    
 }

@@ -51,7 +51,6 @@ class Network {
                     print("Error parsing json")
                 }
             }
-            print("Error: Couldn't connect to session")
         }
         datatask.resume()
     }
