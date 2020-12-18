@@ -45,6 +45,8 @@ def currentSeason(page: Optional[int] = 1):
                 }
                 coverImage {
                     medium
+                    large
+                    extraLarge
                 }
                 episodes
                 status
@@ -107,6 +109,8 @@ def anySeason(season: str, seasonYear: int, page: Optional[int] = 1):
                 }
                 coverImage {
                     medium
+                    large
+                    extraLarge
                 }
                 episodes
             }

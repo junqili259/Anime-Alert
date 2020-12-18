@@ -51,6 +51,8 @@ struct Title: Decodable {
 
 struct CoverImage: Decodable {
     var medium: String?
+    var large: String?
+    var extraLarge: String?
 }
 
 
