@@ -17,10 +17,10 @@ class Network {
     
     var delegate: AnimeModelProtocol?
 
-    func getSeasonalAnime() {
+    func getSeasonalAnime(page: Int = 1) {
         
         // Temporarily using api on local server
-        let urlString = "http://localhost:8000"
+        let urlString = "http://localhost:8000/?page=\(page)"
         
         let url = URL(string: urlString)
         
