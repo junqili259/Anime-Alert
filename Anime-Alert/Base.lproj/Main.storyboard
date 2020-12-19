@@ -1,24 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kc6-fM-Yr5">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Anime Alert-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Anime_Alert" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ncy-Te-YgL">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Anime Alert" id="F12-uU-rjT"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="140" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aTy-vu-gxV">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnimeCell" rowHeight="140" id="djo-TW-90p" customClass="AnimeCell" customModule="Anime_Alert" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="140"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="djo-TW-90p" id="Eql-St-9kc">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vyi-TE-5Kl" userLabel="AnimeCoverImage">
+                                                    <rect key="frame" x="20" y="0.0" width="104" height="140"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AnimeTitleLabel" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cgb-j0-gOv">
+                                                    <rect key="frame" x="132" y="11" width="255" height="79"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Cgb-j0-gOv" secondAttribute="bottom" constant="39" id="3Rq-p4-Oh5"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Cgb-j0-gOv" secondAttribute="trailing" constant="7" id="A32-0d-yft"/>
+                                                <constraint firstItem="Cgb-j0-gOv" firstAttribute="leading" secondItem="Vyi-TE-5Kl" secondAttribute="trailing" constant="8" id="H8e-b6-kVc"/>
+                                                <constraint firstItem="Vyi-TE-5Kl" firstAttribute="leading" secondItem="Eql-St-9kc" secondAttribute="leading" constant="20" id="XKa-xH-sDy"/>
+                                                <constraint firstAttribute="bottom" secondItem="Vyi-TE-5Kl" secondAttribute="bottom" id="en2-mH-Lcx"/>
+                                                <constraint firstItem="Vyi-TE-5Kl" firstAttribute="width" secondItem="Eql-St-9kc" secondAttribute="width" multiplier="0.251208" id="gn5-RD-aK0"/>
+                                                <constraint firstItem="Vyi-TE-5Kl" firstAttribute="top" secondItem="Eql-St-9kc" secondAttribute="top" id="jUe-0w-Zlb"/>
+                                                <constraint firstItem="Cgb-j0-gOv" firstAttribute="top" secondItem="Eql-St-9kc" secondAttribute="topMargin" id="uwi-3B-P2p"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="animeCoverImage" destination="Vyi-TE-5Kl" id="ltD-rW-mSK"/>
+                                            <outlet property="animeTitle" destination="Cgb-j0-gOv" id="RvL-ny-RkT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="aTy-vu-gxV" secondAttribute="trailing" id="4vL-yq-HNU"/>
+                            <constraint firstItem="Ncy-Te-YgL" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="58o-25-B9V"/>
+                            <constraint firstItem="Ncy-Te-YgL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="E6z-Pt-vFP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aTy-vu-gxV" secondAttribute="bottom" id="Eeh-mj-cQx"/>
+                            <constraint firstItem="aTy-vu-gxV" firstAttribute="top" secondItem="Ncy-Te-YgL" secondAttribute="bottom" id="TCx-bO-MKD"/>
+                            <constraint firstItem="aTy-vu-gxV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Tyb-Kp-64Z"/>
+                            <constraint firstItem="Ncy-Te-YgL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="zOC-wb-4nw"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Season" id="cUm-yQ-x5x" userLabel="Seasonal List"/>
+                    <navigationItem key="navigationItem" title="Anime Alert" id="Vke-xb-yGx"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="animeTableView" destination="aTy-vu-gxV" id="oql-CW-9a0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="3315.9420289855075" y="26.785714285714285"/>
+        </scene>
+        <!--Watch List-->
+        <scene sceneID="wKg-lV-eWt">
+            <objects>
+                <viewController id="A9e-bD-qFn" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Voh-hK-RDt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="5Xo-OQ-Goo"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Watch List" id="1pR-6m-mdY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dpu-h9-dbG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3316" y="792"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="N4R-DB-zRe">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="kc6-fM-Yr5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qrh-8k-slM">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="XYG-cU-7IA"/>
+                        <segue destination="A9e-bD-qFn" kind="relationship" relationship="viewControllers" id="uoE-VL-HEH"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6o1-fJ-U8n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2405.7971014492755" y="26.785714285714285"/>
         </scene>
     </scenes>
 </document>

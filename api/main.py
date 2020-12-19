@@ -15,8 +15,8 @@ url = "https://graphql.anilist.co"
 
 
 @app.get("/")
-def currentSeason(page: Optional[int] = 1):
-
+def allShowsInSeason():
+    
     # Automatically get the current season by month (WINTER, SPRING, SUMMER, FALL)
     current_month = int(datetime.today().strftime("%m"))
     month = months[current_month]
@@ -45,6 +45,8 @@ def currentSeason(page: Optional[int] = 1):
                 }
                 coverImage {
                     medium
+                    large
+                    extraLarge
                 }
                 episodes
                 status
@@ -60,25 +62,42 @@ def currentSeason(page: Optional[int] = 1):
     variables = {
         "season": season_now,
         "seasonYear": year,
-        "page": page
+        "page": 1
     }
+
 
     try:
         response = requests.post(url, json= {"query": query, "variables": variables})
     except requests.exceptions.ConnectionError as error:
         print("A Connection Error occured", error)
 
+    currentPage = response.json()["data"]["Page"]["pageInfo"]["currentPage"]
+    lastPage = response.json()["data"]["Page"]["pageInfo"]["lastPage"]
+    animes = response.json()["data"]["Page"]["media"]
 
-    # For displaying data through pandas for dev
-    #########
-    # json_data = json.loads(response.text)
-    # seasonal_anime = json_data["data"]["Page"]["media"]
-    # df = pandas.DataFrame(seasonal_anime)
-    # print(df)
-    ########
     
-    # return seasonal_anime
-    return response.json()
+    for i in range(currentPage, lastPage + 1):
+
+        currentPage = currentPage + 1
+        variables["page"] = currentPage
+
+        try:
+            response = requests.post(url, json = {"query": query, "variables": variables})
+        except requests.exceptions.ConnectionError as error:
+            print("A Connection Error occured", error)
+        
+        currentPageAnime = response.json()["data"]["Page"]["media"]
+
+        # Add anime on this page into anime list
+        animes = animes + currentPageAnime
+    
+    animeList = {
+        "media": animes
+    }
+
+    # return a list of ALL animes in the current season
+    return animeList
+
 
 
 
@@ -107,6 +126,8 @@ def anySeason(season: str, seasonYear: int, page: Optional[int] = 1):
                 }
                 coverImage {
                     medium
+                    large
+                    extraLarge
                 }
                 episodes
             }
@@ -125,3 +146,14 @@ def anySeason(season: str, seasonYear: int, page: Optional[int] = 1):
         print("A Connection Error occured", error)
 
     return response.json()
+
+
+
+@app.get("/statusUpdate")
+def getShow():
+    
+    query = """query() {
+
+    }
+    """
+    return
