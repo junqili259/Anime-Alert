@@ -12,7 +12,7 @@ class AnimeCell: UITableViewCell {
 
     @IBOutlet weak var animeCoverImage: UIImageView!
     @IBOutlet weak var animeTitle: UILabel!
-    
+    let cache = NSCache<NSNumber, UIImage>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,12 +34,22 @@ class AnimeCell: UITableViewCell {
         
         
         // Set anime title
-        animeTitle.text = anime.title!.romaji!
+        if let englishTitle = anime.title!.english {
+            animeTitle.text = englishTitle
+        } else {
+            animeTitle.text = anime.title!.romaji!
+        }
         
-        //let image = anime.coverImage!.large!
-        let image = anime.coverImage!.medium!
+        let imageUrl = anime.coverImage!.extraLarge!
         
-        let url = URL(string: image)
+        
+        // Check cache for image
+        if let cachedImageData = self.cache.object(forKey: anime.id! as NSNumber) {
+            animeCoverImage.image = cachedImageData
+            return
+        }
+
+        let url = URL(string: imageUrl)
         
         guard url != nil else {
             return
@@ -48,13 +58,17 @@ class AnimeCell: UITableViewCell {
         let session = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             
             if error == nil && data != nil {
+                
                 DispatchQueue.main.async {
-                    self.animeCoverImage.image = UIImage(data: data!)
+                    let image = UIImage(data: data!)
+                    self.animeCoverImage.image = image
                     
+                    // Cache the image
+                    self.cache.setObject(image!, forKey: anime.id! as NSNumber)
                 }
             }
         }
         session.resume()
-    }
+    } // end displayAnime()
     
 }

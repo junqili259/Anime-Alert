@@ -53,6 +53,7 @@
                                                 <constraint firstItem="Cgb-j0-gOv" firstAttribute="top" secondItem="Eql-St-9kc" secondAttribute="topMargin" id="uwi-3B-P2p"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="animeCoverImage" destination="Vyi-TE-5Kl" id="ltD-rW-mSK"/>
                                             <outlet property="animeTitle" destination="Cgb-j0-gOv" id="RvL-ny-RkT"/>

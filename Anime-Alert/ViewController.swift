@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var animeTableView: UITableView!
     var model = Network()
     var animes = [Animes]()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,27 +34,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return animes.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        // Customizing the cell
         let cell = animeTableView.dequeueReusableCell(withIdentifier: "AnimeCell", for: indexPath) as! AnimeCell
-        
         let anime = animes[indexPath.row]
-        
         cell.displayAnime(anime: anime)
         
         return cell
-        
     }
-
 }
 
 
 extension ViewController: AnimeModelProtocol {
-    func animeRetrieved(_ anime: AnimePage) {
-        
-        self.animes = anime.Page!.media!
-        
+    func animeRetrieved(_ anime: [Animes]) {
+                
+        self.animes = anime
         animeTableView.reloadData()
-        
     }
 }

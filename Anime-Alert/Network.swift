@@ -10,17 +10,17 @@ import Foundation
 
 
 protocol AnimeModelProtocol {
-    func animeRetrieved(_ anime: AnimePage)
+    func animeRetrieved(_ anime: [Animes])
 }
 
 class Network {
     
     var delegate: AnimeModelProtocol?
 
+    
     func getSeasonalAnime() {
         
-        // Temporarily using api on local server
-        let urlString = "http://localhost:8000"
+        let urlString = "http://localhost:8000/"
         
         let url = URL(string: urlString)
         
@@ -34,19 +34,16 @@ class Network {
         let datatask = session.dataTask(with: url!) { (data, response, error) in
             
             if error == nil && data != nil {
-                
                 let decoder = JSONDecoder()
                 
                 do {
                     
-                    let animes = try decoder.decode(AnimeData.self, from: data!)
-                    let animeData = animes.data!
+                    let media = try decoder.decode(Info.self, from: data!)
+                    let animes = media.media!
                     
-                    // Pass data back to view by main thread
                     DispatchQueue.main.async {
-                        self.delegate?.animeRetrieved(animeData)
+                        self.delegate?.animeRetrieved(animes)
                     }
-                    
                 } catch  {
                     print("Error parsing json")
                 }
