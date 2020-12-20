@@ -4,10 +4,6 @@ from datetime import datetime
 from seasons import months, month_to_season
 import requests
 
-# Dev
-import json
-import pandas
-
 
 app = FastAPI()
 
