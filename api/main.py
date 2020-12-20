@@ -150,10 +150,34 @@ def anySeason(season: str, seasonYear: int, page: Optional[int] = 1):
 
 
 @app.get("/statusUpdate")
-def getShow():
+def getShow(id: int):
     
-    query = """query() {
-
+    query = """query($id: Int) {
+        Media(id: $id) {
+            status
+            episodes
+            title {
+                romaji
+                english
+            }
+            nextAiringEpisode {
+                airingAt
+                timeUntilAiring
+                episode
+            }
+        }
     }
     """
-    return
+
+    variables = {
+        "id": id
+    }
+
+    try:
+        response = requests.post(url, json={"query": query, "variables": variables})
+    except requests.exceptions.ConnectionError as error:
+        print("A Connection Error occured", error)
+    except requests.exceptions.InvalidURL as urlerr:
+        print("Invalid Url error", urlerr)
+
+    return response.json()
