@@ -11,7 +11,8 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var animeTableView: UITableView!
+    
+    @IBOutlet var animeTableView: UITableView!
     var model = Network()
     var animes = [Animes]()
     

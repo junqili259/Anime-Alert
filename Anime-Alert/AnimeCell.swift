@@ -11,7 +11,7 @@ import UIKit
 class AnimeCell: UITableViewCell {
 
     @IBOutlet weak var animeCoverImage: UIImageView!
-    @IBOutlet weak var animeTitle: UILabel!
+    @IBOutlet var animeTitle: UILabel!
     let cache = NSCache<NSNumber, UIImage>()
     
     override func awakeFromNib() {
