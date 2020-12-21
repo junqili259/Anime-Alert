@@ -12,7 +12,7 @@ class AnimeCell: UITableViewCell {
 
     @IBOutlet weak var animeCoverImage: UIImageView!
     @IBOutlet weak var animeTitle: UILabel!
-    let cache = NSCache<NSNumber, UIImage>()
+    let cache = NSCache<NSNumber, NSData>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,9 +43,9 @@ class AnimeCell: UITableViewCell {
         let imageUrl = anime.coverImage!.extraLarge!
         
         
-        // Check cache for image
-        if let cachedImageData = self.cache.object(forKey: anime.id! as NSNumber) {
-            animeCoverImage.image = cachedImageData
+        // Check cache for image data
+        if let cachedImageData = cache.object(forKey: anime.id! as NSNumber) as Data? {
+            animeCoverImage.image = UIImage(data: cachedImageData)
             return
         }
 
@@ -59,12 +59,12 @@ class AnimeCell: UITableViewCell {
             
             if error == nil && data != nil {
                 
+                // Cache the image data
+                self.cache.setObject(data! as NSData, forKey: anime.id! as NSNumber)
+                
                 DispatchQueue.main.async {
                     let image = UIImage(data: data!)
                     self.animeCoverImage.image = image
-                    
-                    // Cache the image
-                    self.cache.setObject(image!, forKey: anime.id! as NSNumber)
                 }
             }
         }
