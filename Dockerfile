@@ -4,4 +4,4 @@ COPY ./api .
 
 RUN pip install -r requirements.txt
 
-CMD
+CMD uvicorn main:app
