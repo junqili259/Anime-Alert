@@ -20,7 +20,7 @@ class Network {
     
     func getSeasonalAnime() {
         
-        let urlString = "http://localhost:8000/"
+        let urlString = "http://192.168.1.4:80"
         
         let url = URL(string: urlString)
         

@@ -78,7 +78,7 @@
                     <navigationItem key="navigationItem" title="Anime Alert" id="Vke-xb-yGx"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="animeTableView" destination="aTy-vu-gxV" id="oql-CW-9a0"/>
+                        <outlet property="animeTableView" destination="aTy-vu-gxV" id="pXo-ka-2u2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
