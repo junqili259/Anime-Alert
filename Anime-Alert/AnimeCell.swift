@@ -42,7 +42,6 @@ class AnimeCell: UITableViewCell {
         
         let imageUrl = anime.coverImage!.extraLarge!
         
-        
         // Check cache for image data
         if let cachedImageData = cache.object(forKey: anime.id! as NSNumber) as Data? {
             animeCoverImage.image = UIImage(data: cachedImageData)
