@@ -4,10 +4,6 @@ from datetime import datetime
 from seasons import months, month_to_season
 import requests
 
-# Dev
-import json
-import pandas
-
 
 app = FastAPI()
 
@@ -153,7 +149,7 @@ def anySeason(season: str, seasonYear: int, page: Optional[int] = 1):
 def getShow():
     
     query = """query() {
-
+        
     }
     """
     return
