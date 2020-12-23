@@ -1,5 +1,5 @@
 # Anime-Alert
-Anime alert system that notifies user of new episode in the season
+This app displays all shows of the current season. The selected show is added to your watchlist and notifications will be sent whenever a new episode is released.
 
 
 ## Run API locally
