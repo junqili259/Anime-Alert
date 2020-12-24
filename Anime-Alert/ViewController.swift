@@ -7,16 +7,18 @@
 //
 
 import UIKit
-
+import CoreData
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
     @IBOutlet weak var animeTableView: UITableView!
     var model = Network()
-    var animes = [Animes]()
+    var animes = [Animes]()// For tableview data
     
-
+    // Reference to managed object context for Core Data
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -44,6 +46,57 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.displayAnime(anime: anime)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let addToWatchList = UIContextualAction(style: .normal, title: "Watch") { (action, view, completionHandler) in
+            
+            // Get the cell at this indexpath
+            let cell = self.animeTableView.cellForRow(at: indexPath) as! AnimeCell
+            
+            // Get the cell properties
+            let animeTitle = cell.animeTitle.text!
+            let animeCoverImage = cell.animeCoverImage.image!
+            
+            // Get other properties from anime api array
+            let anime = self.animes[indexPath.row]
+            let id = anime.id!
+            let airingAt = anime.nextAiringEpisode!.airingAt!
+            let timeUntilAiring = anime.nextAiringEpisode!.timeUntilAiring!
+            let episode = anime.nextAiringEpisode!.episode!
+            
+            // Convert animeCoverImage to data
+            let imageData = animeCoverImage.pngData()!
+            
+            // Create Core Data Object
+            let media = Media(context: self.context)
+            media.title = animeTitle
+            media.coverImage = imageData
+            media.id = Int64(id)
+            
+            let nextAiringEpisode = NextAiringEpisode(context: self.context)
+            nextAiringEpisode.airingAt = Int64(airingAt)
+            nextAiringEpisode.timeUntilAiring = Int64(timeUntilAiring)
+            nextAiringEpisode.episode = Int64(episode)
+            
+            // Save to Core Data
+            do {
+                try self.context.save()
+                print("data saved")
+            } catch{
+                print("Save to Core Data failed")
+            }
+        }
+        return UISwipeActionsConfiguration(actions: [addToWatchList])
+    }
+    
+    /*
+     "Lower than iOS 13 the delete swipe option will show up as a trailing swipe action by default". To prevent from happening this method is added
+     Source: https://programmingwithswift.com/uitableviewcell-swipe-actions-with-swift
+     */
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
     }
 }
 

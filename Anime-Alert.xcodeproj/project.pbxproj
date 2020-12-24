@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		370693782594FC2000ACE2EA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 370693762594FC2000ACE2EA /* Model.xcdatamodeld */; };
+		370693A02595138100ACE2EA /* NextAiringEpisode+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3706939C2595138100ACE2EA /* NextAiringEpisode+CoreDataClass.swift */; };
+		370693A12595138100ACE2EA /* NextAiringEpisode+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3706939D2595138100ACE2EA /* NextAiringEpisode+CoreDataProperties.swift */; };
+		370693A22595138100ACE2EA /* Media+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3706939E2595138100ACE2EA /* Media+CoreDataClass.swift */; };
+		370693A32595138100ACE2EA /* Media+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3706939F2595138100ACE2EA /* Media+CoreDataProperties.swift */; };
 		374A4AC9258B0408005F7A35 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A4AC8258B0408005F7A35 /* Model.swift */; };
 		374A4ACB258B0434005F7A35 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A4ACA258B0434005F7A35 /* Network.swift */; };
 		374A4ACF258C0397005F7A35 /* AnimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A4ACE258C0397005F7A35 /* AnimeCell.swift */; };
@@ -19,6 +24,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		370693772594FC2000ACE2EA /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		3706939C2595138100ACE2EA /* NextAiringEpisode+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NextAiringEpisode+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3706939D2595138100ACE2EA /* NextAiringEpisode+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NextAiringEpisode+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3706939E2595138100ACE2EA /* Media+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Media+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3706939F2595138100ACE2EA /* Media+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Media+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		374A4AC8258B0408005F7A35 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		374A4ACA258B0434005F7A35 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		374A4ACE258C0397005F7A35 /* AnimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeCell.swift; sourceTree = "<group>"; };
@@ -43,6 +53,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		370693A4259519AD00ACE2EA /* CoreDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				3706939C2595138100ACE2EA /* NextAiringEpisode+CoreDataClass.swift */,
+				3706939D2595138100ACE2EA /* NextAiringEpisode+CoreDataProperties.swift */,
+				3706939E2595138100ACE2EA /* Media+CoreDataClass.swift */,
+				3706939F2595138100ACE2EA /* Media+CoreDataProperties.swift */,
+			);
+			path = CoreDataModels;
+			sourceTree = "<group>";
+		};
 		37C746032585D588008F9E31 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +83,7 @@
 		37C7460E2585D588008F9E31 /* Anime-Alert */ = {
 			isa = PBXGroup;
 			children = (
+				370693A4259519AD00ACE2EA /* CoreDataModels */,
 				37C7460F2585D588008F9E31 /* AppDelegate.swift */,
 				37C746112585D588008F9E31 /* SceneDelegate.swift */,
 				37C746132585D588008F9E31 /* ViewController.swift */,
@@ -72,6 +94,7 @@
 				37C746182585D589008F9E31 /* Assets.xcassets */,
 				37C7461A2585D589008F9E31 /* LaunchScreen.storyboard */,
 				37C7461D2585D589008F9E31 /* Info.plist */,
+				370693762594FC2000ACE2EA /* Model.xcdatamodeld */,
 			);
 			path = "Anime-Alert";
 			sourceTree = "<group>";
@@ -150,8 +173,13 @@
 				374A4ACF258C0397005F7A35 /* AnimeCell.swift in Sources */,
 				374A4ACB258B0434005F7A35 /* Network.swift in Sources */,
 				37C746142585D588008F9E31 /* ViewController.swift in Sources */,
+				370693A32595138100ACE2EA /* Media+CoreDataProperties.swift in Sources */,
+				370693782594FC2000ACE2EA /* Model.xcdatamodeld in Sources */,
+				370693A12595138100ACE2EA /* NextAiringEpisode+CoreDataProperties.swift in Sources */,
 				37C746102585D588008F9E31 /* AppDelegate.swift in Sources */,
 				37C746122585D588008F9E31 /* SceneDelegate.swift in Sources */,
+				370693A02595138100ACE2EA /* NextAiringEpisode+CoreDataClass.swift in Sources */,
+				370693A22595138100ACE2EA /* Media+CoreDataClass.swift in Sources */,
 				374A4AC9258B0408005F7A35 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +378,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		370693762594FC2000ACE2EA /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				370693772594FC2000ACE2EA /* Model.xcdatamodel */,
+			);
+			currentVersion = 370693772594FC2000ACE2EA /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 37C746042585D588008F9E31 /* Project object */;
 }

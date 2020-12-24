@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Media" representedClassName="Media" syncable="YES">
+        <attribute name="coverImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="nextAiringEpisode" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NextAiringEpisode" inverseName="media" inverseEntity="NextAiringEpisode"/>
+    </entity>
+    <entity name="NextAiringEpisode" representedClassName="NextAiringEpisode" syncable="YES">
+        <attribute name="airingAt" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="episode" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="timeUntilAiring" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="media" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Media" inverseName="nextAiringEpisode" inverseEntity="Media"/>
+    </entity>
+    <elements>
+        <element name="Media" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="NextAiringEpisode" positionX="190.94140625" positionY="159.95703125" width="128" height="103"/>
+    </elements>
+</model>
