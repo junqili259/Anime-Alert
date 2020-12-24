@@ -20,6 +20,9 @@ extension Media {
     @NSManaged public var coverImage: Data?
     @NSManaged public var id: Int64
     @NSManaged public var title: String?
-    @NSManaged public var nextAiringEpisode: NextAiringEpisode?
+    @NSManaged public var timeUntilAiring: Int64
+    @NSManaged public var episode: Int64
+    @NSManaged public var airingAt: Int64
+    @NSManaged public var watchlist: WatchList?
 
 }

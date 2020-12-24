@@ -1,5 +1,5 @@
 //
-//  NextAiringEpisode+CoreDataClass.swift
+//  WatchList+CoreDataClass.swift
 //  Anime-Alert
 //
 //  Created by Jun Qi Li on 12/24/20.
@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(NextAiringEpisode)
-public class NextAiringEpisode: NSManagedObject {
+@objc(WatchList)
+public class WatchList: NSManagedObject {
 
 }

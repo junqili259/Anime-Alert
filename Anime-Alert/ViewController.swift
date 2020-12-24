@@ -31,6 +31,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        animeTableView.reloadData()
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -72,16 +76,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             media.coverImage = imageData
             media.id = Int64(id)
             
-            let nextAiringEpisode = NextAiringEpisode(context: self.context)
-            
             // If properties are aren't nil we set to model else do nothing
             //MARK: Edge case possible: No airing time yet
             if let properties = anime.nextAiringEpisode {
-                nextAiringEpisode.airingAt = Int64(properties.airingAt!)
-                nextAiringEpisode.timeUntilAiring = Int64(properties.timeUntilAiring!)
-                nextAiringEpisode.episode = Int64(properties.episode!)
+                media.airingAt = Int64(properties.airingAt!)
+                media.timeUntilAiring = Int64(properties.timeUntilAiring!)
+                media.episode = Int64(properties.episode!)
             }
             
+            
+            let watchList = WatchList(context: self.context)
+            watchList.addToMedia(media)
         
             // Save to Core Data
             do {
