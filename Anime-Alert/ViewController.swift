@@ -62,9 +62,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // Get other properties from anime api array
             let anime = self.animes[indexPath.row]
             let id = anime.id!
-            let airingAt = anime.nextAiringEpisode!.airingAt!
-            let timeUntilAiring = anime.nextAiringEpisode!.timeUntilAiring!
-            let episode = anime.nextAiringEpisode!.episode!
             
             // Convert animeCoverImage to data
             let imageData = animeCoverImage.pngData()!
@@ -76,10 +73,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             media.id = Int64(id)
             
             let nextAiringEpisode = NextAiringEpisode(context: self.context)
-            nextAiringEpisode.airingAt = Int64(airingAt)
-            nextAiringEpisode.timeUntilAiring = Int64(timeUntilAiring)
-            nextAiringEpisode.episode = Int64(episode)
             
+            // If properties are aren't nil we set to model else do nothing
+            //MARK: Edge case possible: No airing time yet
+            if let properties = anime.nextAiringEpisode {
+                nextAiringEpisode.airingAt = Int64(properties.airingAt!)
+                nextAiringEpisode.timeUntilAiring = Int64(properties.timeUntilAiring!)
+                nextAiringEpisode.episode = Int64(properties.episode!)
+            }
+            
+        
             // Save to Core Data
             do {
                 try self.context.save()

@@ -18,8 +18,8 @@ extension NextAiringEpisode {
     }
 
     @NSManaged public var airingAt: Int64
-    @NSManaged public var timeUntilAiring: Int64
     @NSManaged public var episode: Int64
+    @NSManaged public var timeUntilAiring: Int64
     @NSManaged public var media: Media?
 
 }

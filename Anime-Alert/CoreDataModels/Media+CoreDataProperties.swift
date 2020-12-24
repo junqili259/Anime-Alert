@@ -17,9 +17,9 @@ extension Media {
         return NSFetchRequest<Media>(entityName: "Media")
     }
 
+    @NSManaged public var coverImage: Data?
     @NSManaged public var id: Int64
     @NSManaged public var title: String?
-    @NSManaged public var coverImage: Data?
     @NSManaged public var nextAiringEpisode: NextAiringEpisode?
 
 }
