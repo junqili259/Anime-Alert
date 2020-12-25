@@ -12,6 +12,7 @@ import CoreData
 class WatchListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var watchListTableView: UITableView!
+    //lazy var refreshControl = UIRefreshControl()
     var anime:[Media]?
     
     // Reference to managed object context for Core Data
@@ -22,6 +23,19 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
         watchListTableView.delegate = self
         watchListTableView.dataSource = self
         
+        //refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        //refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        //watchListTableView.addSubview(refreshControl)
+        fetchAnime()
+    }
+    /*
+    @objc func refresh(_ sender: AnyObject) {
+        fetchAnime()
+        refreshControl.endRefreshing()
+    }
+    */
+    
+    override func viewWillAppear(_ animated: Bool) {
         fetchAnime()
     }
     

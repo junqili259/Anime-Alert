@@ -12,8 +12,10 @@ import CoreData
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var animeTableView: UITableView!
+    
+    // Get data from networking and store into animes
     var model = Network()
-    var animes = [Animes]()// For tableview data
+    var animes = [Animes]()
     
     // Reference to managed object context for Core Data
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -30,10 +32,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         animeTableView.dataSource = self
         
 
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        animeTableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,6 +50,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
+    
+    // Add to Watch List and save to Core Data
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let addToWatchList = UIContextualAction(style: .normal, title: "Watch") { (action, view, completionHandler) in
@@ -87,7 +87,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             let watchList = WatchList(context: self.context)
             watchList.addToMedia(media)
-        
+            
             // Save to Core Data
             do {
                 try self.context.save()
@@ -96,6 +96,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 print("Save to Core Data failed")
             }
         }
+        addToWatchList.backgroundColor = .green
         return UISwipeActionsConfiguration(actions: [addToWatchList])
     }
     
