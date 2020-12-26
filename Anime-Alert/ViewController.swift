@@ -119,6 +119,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 
 extension ViewController {
+    
+    // Source: https://stackoverflow.com/questions/51190576/checking-if-entity-exist-before-saving-it-to-core-data-swift4/51191399
     func checkForExistingTitle(title: String) -> Bool {
         var results: [NSManagedObject] = []
         
