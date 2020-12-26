@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		370693782594FC2000ACE2EA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 370693762594FC2000ACE2EA /* Model.xcdatamodeld */; };
+		370693B62595266F00ACE2EA /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370693B52595266F00ACE2EA /* WatchListViewController.swift */; };
+		370693BA2595354C00ACE2EA /* WatchListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370693B92595354C00ACE2EA /* WatchListCell.swift */; };
+		370693CB259558AB00ACE2EA /* WatchList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370693C7259558AB00ACE2EA /* WatchList+CoreDataClass.swift */; };
+		370693CC259558AB00ACE2EA /* WatchList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370693C8259558AB00ACE2EA /* WatchList+CoreDataProperties.swift */; };
+		370693CD259558AB00ACE2EA /* Media+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370693C9259558AB00ACE2EA /* Media+CoreDataClass.swift */; };
+		370693CE259558AB00ACE2EA /* Media+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370693CA259558AB00ACE2EA /* Media+CoreDataProperties.swift */; };
 		374A4AC9258B0408005F7A35 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A4AC8258B0408005F7A35 /* Model.swift */; };
 		374A4ACB258B0434005F7A35 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A4ACA258B0434005F7A35 /* Network.swift */; };
 		374A4ACF258C0397005F7A35 /* AnimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A4ACE258C0397005F7A35 /* AnimeCell.swift */; };
@@ -19,6 +26,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		370693772594FC2000ACE2EA /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		370693B52595266F00ACE2EA /* WatchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListViewController.swift; sourceTree = "<group>"; };
+		370693B92595354C00ACE2EA /* WatchListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListCell.swift; sourceTree = "<group>"; };
+		370693C7259558AB00ACE2EA /* WatchList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WatchList+CoreDataClass.swift"; sourceTree = "<group>"; };
+		370693C8259558AB00ACE2EA /* WatchList+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WatchList+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		370693C9259558AB00ACE2EA /* Media+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Media+CoreDataClass.swift"; sourceTree = "<group>"; };
+		370693CA259558AB00ACE2EA /* Media+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Media+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		374A4AC8258B0408005F7A35 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		374A4ACA258B0434005F7A35 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		374A4ACE258C0397005F7A35 /* AnimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeCell.swift; sourceTree = "<group>"; };
@@ -43,6 +57,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		370693A4259519AD00ACE2EA /* CoreDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				370693C7259558AB00ACE2EA /* WatchList+CoreDataClass.swift */,
+				370693C8259558AB00ACE2EA /* WatchList+CoreDataProperties.swift */,
+				370693C9259558AB00ACE2EA /* Media+CoreDataClass.swift */,
+				370693CA259558AB00ACE2EA /* Media+CoreDataProperties.swift */,
+			);
+			path = CoreDataModels;
+			sourceTree = "<group>";
+		};
 		37C746032585D588008F9E31 = {
 			isa = PBXGroup;
 			children = (
@@ -62,16 +87,20 @@
 		37C7460E2585D588008F9E31 /* Anime-Alert */ = {
 			isa = PBXGroup;
 			children = (
+				370693A4259519AD00ACE2EA /* CoreDataModels */,
 				37C7460F2585D588008F9E31 /* AppDelegate.swift */,
 				37C746112585D588008F9E31 /* SceneDelegate.swift */,
 				37C746132585D588008F9E31 /* ViewController.swift */,
 				374A4ACE258C0397005F7A35 /* AnimeCell.swift */,
+				370693B52595266F00ACE2EA /* WatchListViewController.swift */,
+				370693B92595354C00ACE2EA /* WatchListCell.swift */,
 				374A4ACA258B0434005F7A35 /* Network.swift */,
 				374A4AC8258B0408005F7A35 /* Model.swift */,
 				37C746152585D588008F9E31 /* Main.storyboard */,
 				37C746182585D589008F9E31 /* Assets.xcassets */,
 				37C7461A2585D589008F9E31 /* LaunchScreen.storyboard */,
 				37C7461D2585D589008F9E31 /* Info.plist */,
+				370693762594FC2000ACE2EA /* Model.xcdatamodeld */,
 			);
 			path = "Anime-Alert";
 			sourceTree = "<group>";
@@ -147,11 +176,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				370693CD259558AB00ACE2EA /* Media+CoreDataClass.swift in Sources */,
 				374A4ACF258C0397005F7A35 /* AnimeCell.swift in Sources */,
+				370693CB259558AB00ACE2EA /* WatchList+CoreDataClass.swift in Sources */,
 				374A4ACB258B0434005F7A35 /* Network.swift in Sources */,
 				37C746142585D588008F9E31 /* ViewController.swift in Sources */,
+				370693782594FC2000ACE2EA /* Model.xcdatamodeld in Sources */,
+				370693CC259558AB00ACE2EA /* WatchList+CoreDataProperties.swift in Sources */,
 				37C746102585D588008F9E31 /* AppDelegate.swift in Sources */,
 				37C746122585D588008F9E31 /* SceneDelegate.swift in Sources */,
+				370693CE259558AB00ACE2EA /* Media+CoreDataProperties.swift in Sources */,
+				370693B62595266F00ACE2EA /* WatchListViewController.swift in Sources */,
+				370693BA2595354C00ACE2EA /* WatchListCell.swift in Sources */,
 				374A4AC9258B0408005F7A35 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +386,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		370693762594FC2000ACE2EA /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				370693772594FC2000ACE2EA /* Model.xcdatamodel */,
+			);
+			currentVersion = 370693772594FC2000ACE2EA /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 37C746042585D588008F9E31 /* Project object */;
 }
