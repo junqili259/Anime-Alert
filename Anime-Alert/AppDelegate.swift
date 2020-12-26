@@ -8,14 +8,21 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let options: UNAuthorizationOptions = [.alert, .sound]
+        
+        // Ask for user permission
+        NotificationManager.shared.center.requestAuthorization(options: options) { (permission, error) in
+            if !permission {
+                print("No permission granted")
+            }
+        }
+        
         return true
     }
 
