@@ -31,10 +31,18 @@ class WatchListCell: UITableViewCell {
         animeTitle.text = media.title!
         animeCoverImage.image = UIImage(data: media.coverImage!)
         
+        #warning("Handle if airing date isn't available ")
         let episode = media.episode
-        let airing = Date(timeIntervalSince1970: TimeInterval(integerLiteral: media.airingAt))
+        let airingDate = Date(timeIntervalSince1970: TimeInterval(integerLiteral: media.airingAt))
+    
+        // Setting the date format to display
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yyy HH:mm a"
+        dateFormatter.timeZone = .autoupdatingCurrent
         
-        airingDate.text = "Episode \(episode) airing on \(airing)"
+        let date = dateFormatter.string(from: airingDate)
+    
+        self.airingDate.text = "Episode \(episode) airing on \(date)"
     }
 
 }

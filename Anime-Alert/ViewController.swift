@@ -30,7 +30,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         animeTableView.delegate = self
         animeTableView.dataSource = self
         
-
+        #warning("For testing separators")
+        self.animeTableView.separatorStyle = .none
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

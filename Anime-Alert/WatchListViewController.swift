@@ -20,20 +20,13 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         watchListTableView.delegate = self
         watchListTableView.dataSource = self
-        
-        //refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        //refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-        //watchListTableView.addSubview(refreshControl)
+        self.watchListTableView.separatorStyle = .none
         fetchAnime()
     }
-    /*
-    @objc func refresh(_ sender: AnyObject) {
-        fetchAnime()
-        refreshControl.endRefreshing()
-    }
-    */
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
