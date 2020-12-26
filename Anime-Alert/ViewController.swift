@@ -30,7 +30,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         animeTableView.delegate = self
         animeTableView.dataSource = self
         
-
+        #warning("For testing separators")
+        self.animeTableView.separatorStyle = .none
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -98,7 +99,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // Save to Core Data
             do {
                 try self.context.save()
-                print("data saved")
             } catch{
                 print("Save to Core Data failed")
             }
