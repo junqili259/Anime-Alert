@@ -8,11 +8,11 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 class WatchListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var watchListTableView: UITableView!
-    //lazy var refreshControl = UIRefreshControl()
     var anime:[Media]?
     
     // Reference to managed object context for Core Data
@@ -24,6 +24,7 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
         watchListTableView.delegate = self
         watchListTableView.dataSource = self
         self.watchListTableView.separatorStyle = .none
+        
         fetchAnime()
     }
 
@@ -67,6 +68,11 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
             
+            // Remove the pending notification
+            let cell = self.watchListTableView.cellForRow(at: indexPath) as! WatchListCell
+            let title = cell.animeTitle.text!
+            self.removeNotifications(title: title)
+            
             // Delete anime
             let animeToRemove = self.anime![indexPath.row]
             self.context.delete(animeToRemove)
@@ -83,6 +89,10 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
             self.fetchAnime()
         }
         return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    func removeNotifications(title: String) {
+        NotificationManager.shared.center.removePendingNotificationRequests(withIdentifiers: [title])
     }
     
 }
