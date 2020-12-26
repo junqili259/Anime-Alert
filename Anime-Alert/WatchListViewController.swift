@@ -38,7 +38,7 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
         // Fetch the data from Core Data to display in the tableview
         do {
             self.anime = try context.fetch(Media.fetchRequest())
-            print("Data fetched")
+            
             DispatchQueue.main.async {
                 self.watchListTableView.reloadData()
             }

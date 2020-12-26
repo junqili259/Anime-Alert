@@ -99,7 +99,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // Save to Core Data
             do {
                 try self.context.save()
-                print("data saved")
             } catch{
                 print("Save to Core Data failed")
             }
