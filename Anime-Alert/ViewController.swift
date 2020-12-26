@@ -20,7 +20,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // Reference to managed object context for Core Data
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -67,6 +66,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let anime = self.animes[indexPath.row]
             let id = anime.id!
             
+            // Check if existing entry exists,
+            // Return and skip the code below
+            let exist = self.checkForExistingTitle(title: animeTitle)
+            if exist {
+                completionHandler(true)
+                return
+            }
+            
             // Convert animeCoverImage to data
             let imageData = animeCoverImage.pngData()!
             
@@ -95,6 +102,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             } catch{
                 print("Save to Core Data failed")
             }
+            completionHandler(true)
         }
         addToWatchList.backgroundColor = .green
         return UISwipeActionsConfiguration(actions: [addToWatchList])
@@ -108,6 +116,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return .none
     }
 }
+
+
+extension ViewController {
+    func checkForExistingTitle(title: String) -> Bool {
+        var results: [NSManagedObject] = []
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Media")
+        fetchRequest.predicate = NSPredicate(format: "title CONTAINS[cd] %@", title)
+        
+        do {
+            results = try context.fetch(fetchRequest)
+        } catch  {
+            print("Failed to check for existing id")
+        }
+        return results.count > 0
+    }
+}
+
 
 
 extension ViewController: AnimeModelProtocol {

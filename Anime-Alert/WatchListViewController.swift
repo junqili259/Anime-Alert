@@ -36,6 +36,7 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
     */
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         fetchAnime()
     }
     
@@ -83,6 +84,7 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
             } catch {
                 print("Failed to save")
             }
+            completionHandler(true)
             
             // Refetch
             self.fetchAnime()
