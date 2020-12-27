@@ -73,7 +73,8 @@ class NotificationManager {
                 let decoder = JSONDecoder()
                 
                 do {
-                    let media = try decoder.decode(AnimeMedia.self, from: data!)
+                    let mydata = try decoder.decode(StatusUpdate.self, from: data!)
+                    let media = mydata.data!.Media!
                     
                     self.createNotification(
                         title: title,
