@@ -71,7 +71,7 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
             // Remove the pending notification
             let cell = self.watchListTableView.cellForRow(at: indexPath) as! WatchListCell
             let title = cell.animeTitle.text!
-            self.removeNotifications(title: title)
+            NotificationManager.shared.removeNotifications(title: title)
             
             // Delete anime
             let animeToRemove = self.anime![indexPath.row]
@@ -91,8 +91,6 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
         return UISwipeActionsConfiguration(actions: [delete])
     }
     
-    func removeNotifications(title: String) {
-        NotificationManager.shared.center.removePendingNotificationRequests(withIdentifiers: [title])
-    }
+
     
 }

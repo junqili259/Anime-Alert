@@ -176,4 +176,4 @@ def getShow(id: int):
     except requests.exceptions.InvalidURL as urlerr:
         print("Invalid Url error", urlerr)
 
-    return response.json()
+    return response.json()["data"]

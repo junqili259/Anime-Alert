@@ -61,3 +61,11 @@ struct AiringStatus: Decodable {
     var timeUntilAiring: Int?
     var episode: Int?
 }
+
+// For statusUpdate
+struct AnimeMedia: Decodable {
+    var status: String?
+    var episodes: Int?
+    var title: Title?
+    var nextAiringEpisode: AiringStatus?
+}

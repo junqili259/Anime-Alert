@@ -94,7 +94,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 
                 // Create a notification if airing status exists
-                self.createNotification(
+                NotificationManager.shared.createNotification(
                     title: animeTitle,
                     episode: properties.episode!,
                     timeUntilAiring: properties.timeUntilAiring!
@@ -145,23 +145,7 @@ extension ViewController {
     }
     
     
-    func createNotification(title: String, episode: Int, timeUntilAiring: Int) {
-        let content = UNMutableNotificationContent()
-        content.title = title
-        content.body = "Episode \(episode) now airing"
-        content.sound = UNNotificationSound.default
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(timeUntilAiring), repeats: false)
-        
-        let identifier = "\(title)"
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-        
-        NotificationManager.shared.center.add(request) { (error) in
-            if error != nil {
-                print("Notification request error")
-            }
-        }
-    }
+
 }
 
 

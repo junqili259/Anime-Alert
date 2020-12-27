@@ -96,6 +96,7 @@
 				374A4ACE258C0397005F7A35 /* AnimeCell.swift */,
 				370693B52595266F00ACE2EA /* WatchListViewController.swift */,
 				370693B92595354C00ACE2EA /* WatchListCell.swift */,
+				37A49BC02597580400A05436 /* NotificationManager.swift */,
 				374A4ACA258B0434005F7A35 /* Network.swift */,
 				374A4AC8258B0408005F7A35 /* Model.swift */,
 				37C746152585D588008F9E31 /* Main.storyboard */,
@@ -103,7 +104,6 @@
 				37C7461A2585D589008F9E31 /* LaunchScreen.storyboard */,
 				37C7461D2585D589008F9E31 /* Info.plist */,
 				370693762594FC2000ACE2EA /* Model.xcdatamodeld */,
-				37A49BC02597580400A05436 /* NotificationManager.swift */,
 			);
 			path = "Anime-Alert";
 			sourceTree = "<group>";
