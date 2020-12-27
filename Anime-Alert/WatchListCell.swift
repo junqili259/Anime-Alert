@@ -33,9 +33,15 @@ class WatchListCell: UITableViewCell {
         
         // Check for pending notification for this show.
         // Create a notification if not scheduled
-        NotificationManager.shared.pendingNotifications(identifier: media.title!, id: media.id)
+        NotificationManager.shared.pendingNotifications(identifier: media.title!, id: media.id, anime: media)
         
-        #warning("Handle if airing date isn't available ")
+        // Handle if airing date isn't available
+        if media.airingAt == 0 {
+            self.airingDate.text = "Airing date unknown"
+            return
+        }
+        
+        
         let episode = media.episode
         let airingDate = Date(timeIntervalSince1970: TimeInterval(integerLiteral: media.airingAt))
     

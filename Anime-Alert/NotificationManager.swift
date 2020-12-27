@@ -6,6 +6,8 @@
 //  Copyright © 2020 Jun Qi Li. All rights reserved.
 //
 
+import UIKit
+import CoreData
 import Foundation
 import UserNotifications
 
@@ -14,6 +16,7 @@ class NotificationManager {
     private init (){}
     
     var center = UNUserNotificationCenter.current()
+    var delegate: UNUserNotificationCenterDelegate?
     
     
     func createNotification(title: String, episode: Int, timeUntilAiring: Int) {
@@ -40,20 +43,19 @@ class NotificationManager {
     
     
     // Check if identifier exists
-    func pendingNotifications(identifier: String, id: Int64) {
+    // Create a new notification if the previous notification was delievered
+    func pendingNotifications(identifier: String, id: Int64, anime: Media) {
         center.getPendingNotificationRequests { (notifications) in
-            for notification in notifications {
-                if notification.identifier == identifier {
-                    return
-                }
+
+            let result = notifications.filter {$0.identifier == identifier}
+            if !(result.count > 0) {
+                self.statusUpdate(id: id, title: identifier, anime: anime)
             }
-            
-            self.statusUpdate(id: id, title: identifier)
         }
     }
     
     
-    private func statusUpdate(id: Int64, title: String){
+    private func statusUpdate(id: Int64, title: String, anime: Media){
         
         let urlString = "http://192.168.1.4:80/statusUpdate?id=\(id)"
         
@@ -75,18 +77,31 @@ class NotificationManager {
                 do {
                     let mydata = try decoder.decode(StatusUpdate.self, from: data!)
                     let media = mydata.data!.Media!
+                    let status = media.status!
                     
-                    self.createNotification(
-                        title: title,
-                        episode: media.nextAiringEpisode!.episode!,
-                        timeUntilAiring: media.nextAiringEpisode!.timeUntilAiring!
-                    )
-                    
+                    // If media.nextAiringEpisode isn't nil
+                    if let properties = media.nextAiringEpisode {
+                        let episode = properties.episode!
+                        let timeUntilAiring = properties.timeUntilAiring!
+                        
+                        // Update Core Data properties
+                        anime.episode = Int64(episode)
+                        anime.airingAt = Int64(media.nextAiringEpisode!.airingAt!)
+                        anime.status = status
+                        
+                        if status == "RELEASING" {
+                            self.createNotification(
+                                title: title,
+                                episode: episode,
+                                timeUntilAiring: timeUntilAiring
+                            )
+                        }
+                    }
                 } catch  {
                     print("Error parsing json")
                 }
             }
         }
         datatask.resume()
-    }
+    }// end statusUpdate
 }

@@ -60,6 +60,13 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = watchListTableView.dequeueReusableCell(withIdentifier: "WatchListCell", for: indexPath) as! WatchListCell
         let media = self.anime![indexPath.row]
         cell.displayAnime(media: media)
+        
+        // Save any new data from statusUpdate
+        do {
+            try self.context.save()
+        } catch  {
+            print("failed to save")
+        }
         return cell
     }
     
