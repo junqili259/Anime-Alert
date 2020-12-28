@@ -8,11 +8,11 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 class WatchListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var watchListTableView: UITableView!
-    //lazy var refreshControl = UIRefreshControl()
     var anime:[Media]?
     
     // Reference to managed object context for Core Data
@@ -24,6 +24,7 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
         watchListTableView.delegate = self
         watchListTableView.dataSource = self
         self.watchListTableView.separatorStyle = .none
+        
         fetchAnime()
     }
 
@@ -59,6 +60,13 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = watchListTableView.dequeueReusableCell(withIdentifier: "WatchListCell", for: indexPath) as! WatchListCell
         let media = self.anime![indexPath.row]
         cell.displayAnime(media: media)
+        
+        // Save any new data from statusUpdate
+        do {
+            try self.context.save()
+        } catch  {
+            print("failed to save")
+        }
         return cell
     }
     
@@ -66,6 +74,11 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
     // Delete swipe action
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+            
+            // Remove the pending notification
+            let cell = self.watchListTableView.cellForRow(at: indexPath) as! WatchListCell
+            let title = cell.animeTitle.text!
+            NotificationManager.shared.removeNotifications(title: title)
             
             // Delete anime
             let animeToRemove = self.anime![indexPath.row]
@@ -84,5 +97,7 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         return UISwipeActionsConfiguration(actions: [delete])
     }
+    
+
     
 }

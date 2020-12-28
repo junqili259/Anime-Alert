@@ -31,7 +31,17 @@ class WatchListCell: UITableViewCell {
         animeTitle.text = media.title!
         animeCoverImage.image = UIImage(data: media.coverImage!)
         
-        #warning("Handle if airing date isn't available ")
+        // Check for pending notification for this show.
+        // Create a notification if not scheduled
+        NotificationManager.shared.pendingNotifications(identifier: media.title!, id: media.id, anime: media)
+        
+        // Handle if airing date isn't available
+        if media.airingAt == 0 {
+            self.airingDate.text = "Airing date unknown"
+            return
+        }
+        
+        
         let episode = media.episode
         let airingDate = Date(timeIntervalSince1970: TimeInterval(integerLiteral: media.airingAt))
     

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -30,7 +31,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         animeTableView.delegate = self
         animeTableView.dataSource = self
         
-        #warning("For testing separators")
         self.animeTableView.separatorStyle = .none
     }
 
@@ -66,6 +66,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // Get other properties from anime api array
             let anime = self.animes[indexPath.row]
             let id = anime.id!
+            let status = anime.status!
             
             // Check if existing entry exists,
             // Return and skip the code below
@@ -83,13 +84,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             media.title = animeTitle
             media.coverImage = imageData
             media.id = Int64(id)
+            media.status = status
             
             // If properties are aren't nil we set to model else do nothing
             //MARK: Edge case possible: No airing time yet
             if let properties = anime.nextAiringEpisode {
                 media.airingAt = Int64(properties.airingAt!)
+                
+                #warning("remove timeUntilAiring")
                 media.timeUntilAiring = Int64(properties.timeUntilAiring!)
                 media.episode = Int64(properties.episode!)
+                
+                // Create a notification if airing status exists
+                NotificationManager.shared.createNotification(
+                    title: animeTitle,
+                    episode: properties.episode!,
+                    timeUntilAiring: properties.timeUntilAiring!
+                )
             }
             
             
@@ -134,10 +145,13 @@ extension ViewController {
         }
         return results.count > 0
     }
+    
+    
+
 }
 
 
-
+// Protocol Method
 extension ViewController: AnimeModelProtocol {
     func animeRetrieved(_ anime: [Animes]) {
                 
