@@ -16,3 +16,12 @@ let urlString = "http://127.0.0.1:8000"
 ```swift
 let urlString = "http://127.0.0.1:8000/statusUpdate?id=\(id)"
 ```
+
+## App features
++ View all shows airing this season
++ Able to favorite a show to be notified
++ Get notifications on a favorited show when a new episode airs
++ Continue to get notifications on favorited shows until show is finished of removed from favorites
++ Able to remove a show from favorites
++ State when the next episode is airing at what time in favorites
++ Favorited shows can still be viewed while offline
