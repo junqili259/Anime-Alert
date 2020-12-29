@@ -1,25 +1,6 @@
 # Anime-Alert
-This app displays all shows of the current season. The selected show is added to your watchlist and notifications will be sent whenever a new episode is released.
+This notification app displays all shows of the current season. The selected show is added to your watchlist and notifications will be sent whenever a new episode is released. As this app is mainly for personal use, the UI wasn't focused so feel free to fork this repo and customize it to your liking.
 
 
-## Run API locally
-### Uvicorn
-```
-cd api
-uvicorn main:app
-```
-
-### For hot reloads
-```
-uvicorn main:app --reload
-```
-
-### Docker
-
-```
-docker build -t myimage .
-docker run -d --name mycontainer -p 80:80 myimage
-```
-
-### Tools
-[Fastapi](https://github.com/tiangolo/fastapi)
+## Running for local use
+The api used for this application is [here](https://github.com/junqili259/Anime-Alert-api)
