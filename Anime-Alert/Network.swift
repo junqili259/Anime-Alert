@@ -20,7 +20,7 @@ class Network {
     
     func getSeasonalAnime() {
         
-        let urlString = "https://evening-falls-53193.herokuapp.com"
+        let urlString = "https://anime-alert-serverless.vercel.app/api/currentSeason"
         
         let url = URL(string: urlString)
         
