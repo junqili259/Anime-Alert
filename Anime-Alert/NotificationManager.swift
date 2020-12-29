@@ -57,7 +57,7 @@ class NotificationManager {
     
     private func statusUpdate(id: Int64, title: String, anime: Media){
         
-        let urlString = "http://192.168.1.4:80/statusUpdate?id=\(id)"
+        let urlString = "https://evening-falls-53193.herokuapp.com/statusUpdate?id=\(id)"
         
         let url = URL(string: urlString)
         

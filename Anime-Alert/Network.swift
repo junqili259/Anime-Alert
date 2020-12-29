@@ -20,7 +20,7 @@ class Network {
     
     func getSeasonalAnime() {
         
-        let urlString = "http://192.168.1.4:80"
+        let urlString = "https://evening-falls-53193.herokuapp.com"
         
         let url = URL(string: urlString)
         
