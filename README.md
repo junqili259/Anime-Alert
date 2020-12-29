@@ -4,3 +4,15 @@ This notification app displays all shows of the current season. The selected sho
 
 ## Running for local use
 The api used for this application is [here](https://github.com/junqili259/Anime-Alert-api) if you wish to use it locally or deploy your own instance(highly recommended). **Note:** The api is deployed through the heroku free tier so the container "falls asleep within 30 mins of inactivity" so you may not see anything on the seasons view controller until the container wakes up to handle your request.
+
+**To modify the app for local use** <br>
+<br>
+*Anime-Alert/Networks.swift*
+```swift
+let urlString = "http://127.0.0.1:8000"
+```
+
+*Anime-Alert/NotificationManager.swift*
+```swift
+let urlString = "http://127.0.0.1:8000/statusUpdate?id=\(id)"
+```
