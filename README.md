@@ -3,7 +3,10 @@ This notification app displays all shows of the current season. The selected sho
 
 
 ## Running for local use
-The api used for this application is [here](https://github.com/junqili259/Anime-Alert-api) if you wish to use it locally or deploy your own instance(highly recommended). **Note:** The api is deployed through the heroku free tier so the container "falls asleep within 30 mins of inactivity" so you may not see anything on the seasons view controller until the container wakes up to handle your request.
+**Update** The api used for this application is no longer heroku but through Vercel serverless functions. Check out their documentation [here](https://vercel.com/docs/serverless-functions/introduction).<br>
+<br>
+The api used for this application is [here](https://github.com/junqili259/Anime-Alert-serverless) if you wish to use it locally or deploy your own instance(highly recommended). The older api used was deployed through heroku container registry which can be found [here](https://github.com/junqili259/Anime-Alert-api). ~~**Note:** The api is deployed through the heroku free tier so the container "falls asleep within 30 mins of inactivity" so you may not see anything on the seasons view controller until the container wakes up to handle your request.~~
+
 
 **To modify the app for local use** <br>
 <br>
