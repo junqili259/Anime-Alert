@@ -54,8 +54,27 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func deleteRows(_ sender: Any) {
+        let showsToDelete = watchListTableView.indexPathsForSelectedRows
+        
+        if let indexpaths = showsToDelete {
+            for indexpath in indexpaths {
+                
+                // Remove notifications
+                let show = anime![indexpath.row]
+                NotificationManager.shared.removeNotifications(title: show.title!)
+                
+                // Delete anime from Core Data
+                self.context.delete(show)
+                
+                // save data
+                do {
+                    try self.context.save()
+                } catch  {
+                    print("Failed to save: Delete Rows")
+                }
+            }
+        }
         self.watchListTableView.isEditing = false
+        fetchAnime()
     }
-    
-    
 }

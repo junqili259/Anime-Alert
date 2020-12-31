@@ -69,6 +69,4 @@ extension WatchListViewController {
     func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
         self.setEditing(true, animated: true)
     }
-    
-    
 }
