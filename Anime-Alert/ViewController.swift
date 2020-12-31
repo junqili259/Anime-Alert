@@ -32,6 +32,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         animeTableView.dataSource = self
         
         self.animeTableView.separatorStyle = .none
+        self.animeTableView.allowsSelection = false
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
