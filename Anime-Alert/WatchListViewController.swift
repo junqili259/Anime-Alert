@@ -26,9 +26,7 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         self.watchListTableView.separatorStyle = .none
         self.watchListTableView.allowsSelection = false
-        self.watchListTableView.allowsMultipleSelectionDuringEditing = true
-        //self.watchListTableView.allowsMultipleSelection
-        
+        self.watchListTableView.allowsMultipleSelectionDuringEditing = true        
         fetchAnime()
     }
 
@@ -53,6 +51,7 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    
     @IBAction func deleteRows(_ sender: Any) {
         let showsToDelete = watchListTableView.indexPathsForSelectedRows
         
@@ -66,7 +65,7 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
                 // Delete anime from Core Data
                 self.context.delete(show)
                 
-                // save data
+                // save changes to context
                 do {
                     try self.context.save()
                 } catch  {

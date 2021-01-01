@@ -29,11 +29,11 @@ extension WatchListViewController {
             print("failed to save")
         }
         return cell
-    }// end cellForRowAt
+    }// end cellForRowAt()
     
     
     
-    // Delete swipe action
+    /// Delete swipe action
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
             
@@ -58,7 +58,7 @@ extension WatchListViewController {
             self.fetchAnime()
         }
         return UISwipeActionsConfiguration(actions: [delete])
-    }// end trailingSwipeActionsConfigurationForRowAt
+    }// end trailingSwipeActionsConfigurationForRowAt()
     
     
     
