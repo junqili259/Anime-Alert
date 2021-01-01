@@ -96,7 +96,13 @@
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bA2-yb-0dS">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Shows" id="654-RP-QoP"/>
+                                    <navigationItem title="Shows" id="654-RP-QoP">
+                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="trash" id="ZAR-Fj-p1f">
+                                            <connections>
+                                                <action selector="deleteRows:" destination="A9e-bD-qFn" id="Wkp-PD-yJN"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="140" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0wU-qt-GjX" userLabel="WatchListTableView">

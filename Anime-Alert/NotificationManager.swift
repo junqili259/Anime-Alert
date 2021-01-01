@@ -18,7 +18,10 @@ class NotificationManager {
     var center = UNUserNotificationCenter.current()
     var delegate: UNUserNotificationCenterDelegate?
     
-    
+    /// - Parameters:
+    ///     - title: the string title of anime show, not nil or empty
+    ///     - episode: The episode airing in the following week, episode > 0
+    ///     - timeUntilAiring: in unix epoch time
     func createNotification(title: String, episode: Int, timeUntilAiring: Int) {
         let content = UNMutableNotificationContent()
         content.title = title
@@ -42,20 +45,22 @@ class NotificationManager {
     }
     
     
-    // Check if identifier exists
-    // Create a new notification if the previous notification was delievered
+    /// Create a new notification if the previous notification was delievered
+    /// Do nothing if notification isn't delievered yet
+    ///
+    ///
     func pendingNotifications(identifier: String, id: Int64, anime: Media) {
         center.getPendingNotificationRequests { (notifications) in
 
             let result = notifications.filter {$0.identifier == identifier}
             if !(result.count > 0) {
-                self.statusUpdate(id: id, title: identifier, anime: anime)
+                self.updateNotifications(id: id, title: identifier, anime: anime)
             }
         }
     }
     
     
-    private func statusUpdate(id: Int64, title: String, anime: Media){
+    private func updateNotifications(id: Int64, title: String, anime: Media){
         
         let urlString = "https://anime-alert-serverless.vercel.app/statusUpdate?id=\(id)"
         

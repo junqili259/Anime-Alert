@@ -32,6 +32,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         animeTableView.dataSource = self
         
         self.animeTableView.separatorStyle = .none
+        self.animeTableView.allowsSelection = false
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,7 +52,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    // Add to Watch List and save to Core Data
+    /// Swipe to add show to Watch List and save to Core Data
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let addToWatchList = UIContextualAction(style: .normal, title: "Watch") { (action, view, completionHandler) in
@@ -132,6 +133,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 extension ViewController {
     
     // Source: https://stackoverflow.com/questions/51190576/checking-if-entity-exist-before-saving-it-to-core-data-swift4/51191399
+    
+    /// - Returns: True if show is already saved to Core Data previously, false otherwise.
     func checkForExistingTitle(title: String) -> Bool {
         var results: [NSManagedObject] = []
         

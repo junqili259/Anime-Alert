@@ -17,6 +17,7 @@
 		374A4AC9258B0408005F7A35 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A4AC8258B0408005F7A35 /* Model.swift */; };
 		374A4ACB258B0434005F7A35 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A4ACA258B0434005F7A35 /* Network.swift */; };
 		374A4ACF258C0397005F7A35 /* AnimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A4ACE258C0397005F7A35 /* AnimeCell.swift */; };
+		3783C924259D5A6E0028A9CF /* WatchListTBext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3783C923259D5A6E0028A9CF /* WatchListTBext.swift */; };
 		37A49BC12597580400A05436 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A49BC02597580400A05436 /* NotificationManager.swift */; };
 		37C746102585D588008F9E31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C7460F2585D588008F9E31 /* AppDelegate.swift */; };
 		37C746122585D588008F9E31 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C746112585D588008F9E31 /* SceneDelegate.swift */; };
@@ -37,6 +38,7 @@
 		374A4AC8258B0408005F7A35 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		374A4ACA258B0434005F7A35 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		374A4ACE258C0397005F7A35 /* AnimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeCell.swift; sourceTree = "<group>"; };
+		3783C923259D5A6E0028A9CF /* WatchListTBext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListTBext.swift; sourceTree = "<group>"; };
 		37A49BC02597580400A05436 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		37C7460C2585D588008F9E31 /* Anime-Alert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anime-Alert.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37C7460F2585D588008F9E31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				37C746132585D588008F9E31 /* ViewController.swift */,
 				374A4ACE258C0397005F7A35 /* AnimeCell.swift */,
 				370693B52595266F00ACE2EA /* WatchListViewController.swift */,
+				3783C923259D5A6E0028A9CF /* WatchListTBext.swift */,
 				370693B92595354C00ACE2EA /* WatchListCell.swift */,
 				37A49BC02597580400A05436 /* NotificationManager.swift */,
 				374A4ACA258B0434005F7A35 /* Network.swift */,
@@ -180,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				374A4ACF258C0397005F7A35 /* AnimeCell.swift in Sources */,
+				3783C924259D5A6E0028A9CF /* WatchListTBext.swift in Sources */,
 				374A4ACB258B0434005F7A35 /* Network.swift in Sources */,
 				37A49BC12597580400A05436 /* NotificationManager.swift in Sources */,
 				37331BE925984F000043F2B9 /* WatchList+CoreDataProperties.swift in Sources */,

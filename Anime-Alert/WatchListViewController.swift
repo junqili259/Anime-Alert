@@ -23,8 +23,10 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         watchListTableView.delegate = self
         watchListTableView.dataSource = self
-        self.watchListTableView.separatorStyle = .none
         
+        self.watchListTableView.separatorStyle = .none
+        self.watchListTableView.allowsSelection = false
+        self.watchListTableView.allowsMultipleSelectionDuringEditing = true        
         fetchAnime()
     }
 
@@ -50,54 +52,28 @@ class WatchListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return anime?.count ?? 0
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = watchListTableView.dequeueReusableCell(withIdentifier: "WatchListCell", for: indexPath) as! WatchListCell
-        let media = self.anime![indexPath.row]
-        cell.displayAnime(media: media)
+    @IBAction func deleteRows(_ sender: Any) {
+        let showsToDelete = watchListTableView.indexPathsForSelectedRows
         
-        // Save any new data from statusUpdate
-        do {
-            try self.context.save()
-        } catch  {
-            print("failed to save")
-        }
-        return cell
-    }
-    
-    
-    // Delete swipe action
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
-            
-            // Remove the pending notification
-            let cell = self.watchListTableView.cellForRow(at: indexPath) as! WatchListCell
-            let title = cell.animeTitle.text!
-            NotificationManager.shared.removeNotifications(title: title)
-            
-            // Delete anime
-            let animeToRemove = self.anime![indexPath.row]
-            self.context.delete(animeToRemove)
-            
-            // Save data
-            do {
-                try self.context.save()
-            } catch {
-                print("Failed to save")
+        if let indexpaths = showsToDelete {
+            for indexpath in indexpaths {
+                
+                // Remove notifications
+                let show = anime![indexpath.row]
+                NotificationManager.shared.removeNotifications(title: show.title!)
+                
+                // Delete anime from Core Data
+                self.context.delete(show)
+                
+                // save changes to context
+                do {
+                    try self.context.save()
+                } catch  {
+                    print("Failed to save: Delete Rows")
+                }
             }
-            completionHandler(true)
-            
-            // Refetch
-            self.fetchAnime()
         }
-        return UISwipeActionsConfiguration(actions: [delete])
+        self.watchListTableView.isEditing = false
+        fetchAnime()
     }
-    
-
-    
 }
