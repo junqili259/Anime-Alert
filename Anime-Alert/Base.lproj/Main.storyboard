@@ -74,7 +74,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Season" id="cUm-yQ-x5x" userLabel="Seasonal List"/>
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="cUm-yQ-x5x" userLabel="Seasonal List"/>
                     <navigationItem key="navigationItem" title="Anime Alert" id="Vke-xb-yGx"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -169,7 +169,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Xo-OQ-Goo"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Watch List" id="1pR-6m-mdY"/>
+                    <tabBarItem key="tabBarItem" title="Watch List" selectedImage="eyeglasses" catalog="system" id="1pR-6m-mdY"/>
                     <connections>
                         <outlet property="watchListTableView" destination="0wU-qt-GjX" id="QFG-KN-1Uh"/>
                     </connections>
@@ -198,4 +198,7 @@
             <point key="canvasLocation" x="2405.7971014492755" y="26.785714285714285"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="eyeglasses" catalog="system" width="128" height="54"/>
+    </resources>
 </document>

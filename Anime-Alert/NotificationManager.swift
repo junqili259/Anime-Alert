@@ -62,7 +62,7 @@ class NotificationManager {
     
     private func updateNotifications(id: Int64, title: String, anime: Media){
         
-        let urlString = "https://anime-alert-serverless.vercel.app/statusUpdate?id=\(id)"
+        let urlString = "https://anime-alert-serverless.vercel.app/api/statusUpdate?id=\(id)"
         
         let url = URL(string: urlString)
         
